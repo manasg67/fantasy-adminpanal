@@ -1,6 +1,4 @@
-
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
 import { HiMinus } from 'react-icons/hi';
 
 export default function CategoryDropdown() {
@@ -53,7 +51,7 @@ export default function CategoryDropdown() {
     }
   };
 
-  const fetchproducts = async (subcategoryId) => {
+  const fetchProducts = async (subcategoryId) => {
     setLoading(true);
     setError(null);
     try {
@@ -80,18 +78,22 @@ export default function CategoryDropdown() {
     }
   };
 
-  const handlesubCategoryClick = (subcategoryId) => {
+  const handleSubCategoryClick = (subcategoryId) => {
     if (selectedsubCategoryId === subcategoryId) {
       setSelectedsubCategoryId(null);
       setProducts([]); // Clear products when deselecting a subcategory
     } else {
       setSelectedsubCategoryId(subcategoryId);
-      fetchproducts(subcategoryId);
+      fetchProducts(subcategoryId);
     }
   };
 
   const handleButtonClick = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(true); // Open modal
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false); // Close modal
   };
 
   const deleteProduct = async (productId) => {
@@ -116,23 +118,18 @@ export default function CategoryDropdown() {
   };
 
   return (
-    <div style={{ position: 'relative' }}>
-      {/* Delete Product Button */}
+    <div>
+      {/* Open Modal Button */}
       <button
         onClick={handleButtonClick}
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: '#dc2626',
           color: 'white',
-          padding: '12px 24px',
+          padding: '10px 20px',
           borderRadius: '8px',
-          fontSize: '18px',
-          fontWeight: '600',
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-          cursor: 'pointer',
-          zIndex: '40'
+          display: 'flex',
+          alignItems: 'center',
+          fontSize: '16px',
         }}
       >
         <span>Delete Product</span>
@@ -144,13 +141,13 @@ export default function CategoryDropdown() {
         <div
           style={{
             position: 'fixed',
-            width:"100%",
+            width: '100%',
             inset: '0',
             backgroundColor: 'rgba(31, 41, 55, 0.8)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            zIndex: '50'
+            zIndex: '50',
           }}
         >
           <img
@@ -164,100 +161,121 @@ export default function CategoryDropdown() {
       {isOpen && (
         <div
           style={{
-            position: 'absolute',
-            top: '64px',
-            right: '16px',
             backgroundColor: 'white',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             borderRadius: '8px',
             padding: '16px',
-            width: '100%',
+            width: '80%',
+            maxWidth: '1200px',
+            margin: '0 auto',
             zIndex: '40',
-            flex:1,
-            flexDirection:"row"
+            position: 'relative',
           }}
         >
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start' }}>
-  {/* Error Message */}
-  {error && <p style={{ color: '#dc2626', textAlign: 'center', marginRight: '16px' }}>{error}</p>}
-
-  {/* Categories List */}
-  {categories.length > 0 && (
-    <ul style={{ marginBottom: '8px', marginRight: '16px' }}>
-      {categories.map((category) => (
-        <li key={category._id} style={{ padding: '8px', borderBottom: '1px solid #d1d5db' }}>
+          {/* Close Modal Button */}
           <button
-            onClick={() => handleCategoryClick(category._id)}
+            onClick={handleCloseModal}
             style={{
-              color: '#3b82f6',
-              textDecoration: 'underline',
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              backgroundColor: '#dc2626',
+              color: 'white',
+              border: 'none',
+              borderRadius: '50%',
+              padding: '8px',
               cursor: 'pointer',
-              outline: 'none'
+              fontSize: '20px',
             }}
           >
-            {category.name}
+            &times;
           </button>
-          {selectedCategoryId === category._id && subcategories.length > 0 && (
-            <ul style={{ paddingLeft: '16px', marginTop: '8px' }}>
-              {subcategories.map((sub) => (
-                <li key={sub._id}>
-                  <button
-                    onClick={() => handlesubCategoryClick(sub._id)}
-                    style={{
-                      color: '#4b5563',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      outline: 'none'
-                    }}
-                  >
-                    {sub.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
-  )}
 
-  
-            {/* Products List */}
-            {selectedsubCategoryId && products.length > 0 && (
-              <div style={{ marginTop: '16px', width: '100%' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: '600' }}>Products:</h3>
-                <ul style={{ marginTop: '8px', padding: 0 }}>
-                  {products.map((product) => (
-                    <li key={product._id} style={{ padding: '8px', borderBottom: '1px solid #d1d5db', display: "flex", flexDirection: 'row', alignItems: "center" }}>
-                      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '70%' }}>
-                      {product.name}
-                        <img src={product.image} alt={product.name} style={{ objectFit: "contain", height: 140, width: 140 }} />
-                       
-                      </div>
+          {/* Error Message */}
+          {error && <p style={{ color: '#dc2626', textAlign: 'center', marginBottom: '16px' }}>{error}</p>}
+
+          {/* Categories List */}
+          {categories.length > 0 && (
+            <div style={{ display: 'flex' }}>
+              <div style={{ marginRight: '16px', flex: '1' }}>
+                <ul style={{ marginBottom: '8px' }}>
+                  {categories.map((category) => (
+                    <li key={category._id} style={{ padding: '8px', borderBottom: '1px solid #d1d5db' }}>
                       <button
-                        onClick={() => deleteProduct(product._id)}
+                        onClick={() => handleCategoryClick(category._id)}
                         style={{
-                          marginTop: '8px',
-                          marginLeft: 'auto',
-                          fontSize: '14px',
-                          height: 50,
-                          width: 80,
-                          backgroundColor: '#dc2626',
-                          color: 'white',
-                          padding: '4px 12px',
-                          borderRadius: '4px',
+                          color: '#3b82f6',
+                          textDecoration: 'underline',
                           cursor: 'pointer',
-                          zIndex: '50'
+                          outline: 'none',
+                          background: 'none',
+                          border: 'none',
+                          padding: '0',
                         }}
                       >
-                        Delete
+                        {category.name}
                       </button>
+                      {selectedCategoryId === category._id && subcategories.length > 0 && (
+                        <ul style={{ paddingLeft: '16px', marginTop: '8px' }}>
+                          {subcategories.map((sub) => (
+                            <li key={sub._id}>
+                              <button
+                                onClick={() => handleSubCategoryClick(sub._id)}
+                                style={{
+                                  color: '#4b5563',
+                                  textDecoration: 'underline',
+                                  cursor: 'pointer',
+                                  outline: 'none',
+                                  background: 'none',
+                                  border: 'none',
+                                  padding: '0',
+                                }}
+                              >
+                                {sub.name}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
                   ))}
                 </ul>
               </div>
-            )}
-          </div>
+
+              {/* Products List */}
+              {selectedsubCategoryId && products.length > 0 && (
+                <div style={{ flex: '2' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: '600' }}>Products:</h3>
+                  <ul style={{ marginTop: '8px', padding: 0 }}>
+                    {products.map((product) => (
+                      <li key={product._id} style={{ padding: '8px', borderBottom: '1px solid #d1d5db', display: 'flex', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
+                          <img src={product.image} alt={product.name} style={{ objectFit: 'contain', height: 140, width: 140, marginRight: '16px' }} />
+                          {product.name}
+                        </div>
+                        <button
+                          onClick={() => deleteProduct(product._id)}
+                          style={{
+                            marginLeft: 'auto',
+                            fontSize: '14px',
+                            height: 50,
+                            width: 80,
+                            backgroundColor: '#dc2626',
+                            color: 'white',
+                            padding: '4px 12px',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

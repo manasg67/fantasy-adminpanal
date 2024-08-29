@@ -70,9 +70,9 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Admin</h1>
+    <div>
+      <header>
+       
         <div style={{ display: 'flex', gap: '10px' }}>
           <button
             onClick={handleAddButtonClick}
