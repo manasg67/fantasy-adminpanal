@@ -17,7 +17,7 @@ export default function Login() {
 
         <form action="#" style={{ maxWidth: '28rem', margin: '2rem auto 0', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div>
-            <label htmlFor="email" className="sr-only">Email</label>
+            <label htmlFor="email" style={{ display: 'none' }}>Email</label>
 
             <div style={{ position: 'relative' }}>
               <input
@@ -33,7 +33,7 @@ export default function Login() {
                 placeholder="Enter email"
               />
 
-              <span style={{ position: 'absolute', inset: '0', right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
+              <span style={{ position: 'absolute', top: 0, bottom: 0, right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   style={{ width: '1rem', height: '1rem', color: '#9CA3AF' }}
@@ -53,7 +53,7 @@ export default function Login() {
           </div>
 
           <div>
-            <label htmlFor="password" className="sr-only">Password</label>
+            <label htmlFor="password" style={{ display: 'none' }}>Password</label>
 
             <div style={{ position: 'relative' }}>
               <input
@@ -69,7 +69,7 @@ export default function Login() {
                 placeholder="Enter password"
               />
 
-              <span style={{ position: 'absolute', inset: '0', right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
+              <span style={{ position: 'absolute', top: 0, bottom: 0, right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   style={{ width: '1rem', height: '1rem', color: '#9CA3AF' }}
@@ -95,8 +95,6 @@ export default function Login() {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          
-
             <button
               type="submit"
               style={{
