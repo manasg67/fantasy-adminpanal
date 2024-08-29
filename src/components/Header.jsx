@@ -1,6 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // Clear authentication data (e.g., token)
+        localStorage.removeItem('authToken'); // or sessionStorage.removeItem('authToken');
+        
+        // Redirect to the login page
+        navigate('/');
+      };
   return (
     <div>
       <header style={{  backgroundColor: 'white',
@@ -26,7 +37,7 @@ const Header = () => {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ display: 'flex', gap: '1rem' }}>
-                  <a
+                <button
                     style={{
                       borderRadius: '0.375rem',
                       backgroundColor: '#14b8a6',
@@ -35,11 +46,13 @@ const Header = () => {
                       fontWeight: 500,
                       color: 'white',
                       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+                      border: 'none',
+                      cursor: 'pointer'
                     }}
-                    href="#"
+                    onClick={handleLogout}
                   >
                     Logout
-                  </a>
+                  </button>
 
                 </div>
               </div>
