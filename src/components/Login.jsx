@@ -1,11 +1,11 @@
-
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();  // Initialize navigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +22,7 @@ export default function Login() {
 
     if (response.ok) {
       setMessage(data.msg); // Display success message
+      navigate('/mainpage'); // Redirect to the dashboard or any route you want
     } else {
       setMessage(data.msg); // Display error message
     }
@@ -34,7 +35,6 @@ export default function Login() {
           <h1 style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '1rem' }}>
             Get started today!
           </h1>
-
           <p style={{ marginTop: '1rem', color: '#6B7280' }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla eaque error neque
             ipsa culpa autem, at itaque nostrum!
@@ -44,7 +44,6 @@ export default function Login() {
         <form onSubmit={handleSubmit} style={{ maxWidth: '28rem', margin: '2rem auto 0', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div>
             <label htmlFor="email" style={{ display: 'none' }}>Email</label>
-
             <div style={{ position: 'relative' }}>
               <input
                 type="email"
@@ -60,7 +59,6 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-
               <span style={{ position: 'absolute', top: 0, bottom: 0, right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +80,6 @@ export default function Login() {
 
           <div>
             <label htmlFor="password" style={{ display: 'none' }}>Password</label>
-
             <div style={{ position: 'relative' }}>
               <input
                 type="password"
@@ -98,7 +95,6 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-
               <span style={{ position: 'absolute', top: 0, bottom: 0, right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -151,4 +147,3 @@ export default function Login() {
     </div>
   );
 }
-

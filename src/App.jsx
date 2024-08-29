@@ -1,16 +1,23 @@
+// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import CategoryDropdown from './components/CategoryDropdown';
-import Login from './components/Login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Login'; // Adjust path if needed
+import Mainpage from './components/Mainpage'; // Adjust path if needed
 
-export default function App() {
+function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-     <Login/>
-      {/* Add other components like Sidebar, MainContent here */}
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          {/* Define the route for the login page */}
+          <Route path="/" element={<Login />} />
+          
+          {/* Define the route for the dashboard page */}
+          <Route path="/mainpage" element={<Mainpage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
-
+export default App;

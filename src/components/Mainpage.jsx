@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import CategoryDropdown from './components/CategoryDropdown';
+import Header from './Header';
+import CategoryDropdown from './CategoryDropdown';
 
 export default function App() {
   return (
