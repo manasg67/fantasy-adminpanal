@@ -121,9 +121,6 @@ export default function CategoryDropdown() {
       <button
         onClick={handleButtonClick}
         style={{
-          position: 'fixed', // Changed from 'absolute' to 'fixed'
-          top: '16px',
-          right: '16px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

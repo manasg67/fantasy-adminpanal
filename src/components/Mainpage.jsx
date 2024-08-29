@@ -6,13 +6,13 @@ import CategoryDropdown from './CategoryDropdown';
 
 export default function App() {
   return (
-    <>
-    <Header />
+   
     <div className="min-h-screen bg-gray-100">
+      <Header/>
       <Addproduct />
       <CategoryDropdown/>
       {/* Add other components like Sidebar, MainContent here */}
     </div>
-    </>
+  
   );
 }
