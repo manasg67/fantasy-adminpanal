@@ -412,44 +412,43 @@ export default function CategoryDropdown() {
     </ul>
   )}
 
-  {/* Products List */}
-  {selectedsubCategoryId && products.length > 0 && (
-    <div style={{ marginTop: '16px', flex: '1' }}>
-      <h3 style={{ fontSize: '18px', fontWeight: '600' }}>Products:</h3>
-      <ul style={{ marginTop: '8px' }}>
-        {products.map((product) => (
-          <li key={product._id} style={{ padding: '8px', borderBottom: '1px solid #d1d5db',display:"flex",flexDirection:'row',alignItems:"center"}}>
-            
-            <div style={{ marginTop: '8px' ,display:"flex",flexDirection:"column",alignItems:'center'}}>
-              <img src={product.image} alt={product.name} style={{objectFit:"contain",height:140,width:140}} />
-              {product.name}
-            </div>
-            <button
-              onClick={() => deleteProduct(product._id)}
-              style={{
-                marginTop: '8px',
-                marginLeft:'80%',
-                fontSize: '14px',
-                height:50,
-                width:80,
-                backgroundColor: '#dc2626',
-                color: 'white',
-                padding: '4px 12px',
-                borderRadius: '4px',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                cursor: 'pointer',
-                outline: 'none'
-              }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )}
-</div>
-
+  
+            {/* Products List */}
+            {selectedsubCategoryId && products.length > 0 && (
+              <div style={{ marginTop: '16px', width: '100%' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '600' }}>Products:</h3>
+                <ul style={{ marginTop: '8px', padding: 0 }}>
+                  {products.map((product) => (
+                    <li key={product._id} style={{ padding: '8px', borderBottom: '1px solid #d1d5db', display: "flex", flexDirection: 'row', alignItems: "center" }}>
+                      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '70%' }}>
+                      {product.name}
+                        <img src={product.image} alt={product.name} style={{ objectFit: "contain", height: 140, width: 140 }} />
+                       
+                      </div>
+                      <button
+                        onClick={() => deleteProduct(product._id)}
+                        style={{
+                          marginTop: '8px',
+                          marginLeft: 'auto',
+                          fontSize: '14px',
+                          height: 50,
+                          width: 80,
+                          backgroundColor: '#dc2626',
+                          color: 'white',
+                          padding: '4px 12px',
+                          borderRadius: '4px',
+                          cursor: 'pointer',
+                          zIndex: '50'
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

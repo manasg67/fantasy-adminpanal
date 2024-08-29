@@ -143,6 +143,7 @@
 import React, { useState, useEffect } from 'react';
 import { HiPlus } from 'react-icons/hi';
 import FormComponent from './FormComponent';
+import CategoryDropdown from './CategoryDropdown';
 
 export default function AdminPanel() {
   const [categories, setCategories] = useState([]);
@@ -229,6 +230,7 @@ export default function AdminPanel() {
             Add Product
             <HiPlus style={{ marginLeft: '8px', fontSize: '20px' }} />
           </button>
+          <CategoryDropdown/>
         </div>
       </header>
 
@@ -292,6 +294,7 @@ export default function AdminPanel() {
           />
         )}
       </main>
+      
     </div>
   );
 }
