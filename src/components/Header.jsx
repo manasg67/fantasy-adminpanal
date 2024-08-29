@@ -1,5 +1,7 @@
+
+
 // import React, { useState, useEffect } from 'react';
-// import { HiOutlineDotsHorizontal } from 'react-icons/hi';
+// import { HiPlus, HiMinus } from 'react-icons/hi';
 // import FormComponent from './FormComponent';
 
 // export default function AdminPanel() {
@@ -63,7 +65,7 @@
 //     setShowForm(true);
 //   };
 
-//   const handleButtonClick = () => {
+//   const handleAddButtonClick = () => {
 //     setIsOpen(!isOpen);
 //   };
 
@@ -71,9 +73,23 @@
 //     <div className="min-h-screen bg-gray-100 flex flex-col">
 //       <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
 //         <h1 className="text-2xl font-bold">Admin</h1>
-//         <button onClick={handleButtonClick} className="text-2xl focus:outline-none">
-//           <HiOutlineDotsHorizontal />
-//         </button>
+//         <div style={{ display: 'flex', gap: '10px' }}>
+//           <button
+//             onClick={handleAddButtonClick}
+//             style={{
+//               backgroundColor: 'green',
+//               color: 'white',
+//               padding: '10px 20px',
+//               borderRadius: '8px',
+//               display: 'flex',
+//               alignItems: 'center',
+//               fontSize: '16px',
+//             }}
+//           >
+//             Add Product
+//             <HiPlus style={{ marginLeft: '8px', fontSize: '20px' }} />
+//           </button>
+//         </div>
 //       </header>
 
 //       <main className="flex-1 p-4">
@@ -96,7 +112,7 @@
 //                         {subcategories.map((sub) => (
 //                           <li key={sub._id}>
 //                             <button
-//                               onClick={() => handleSubcategoryClick(sub._id)} // Pass subcategoryId here
+//                               onClick={() => handleSubcategoryClick(sub._id)}
 //                               className="text-gray-700 hover:underline focus:outline-none"
 //                             >
 //                               {sub.name}
@@ -113,10 +129,10 @@
 //         )}
 
 //         {showForm && (
-//           <FormComponent 
-//             categoryId={selectedCategoryId} 
-//             subcategoryId={selectedSubcategoryId} // Pass subcategoryId to FormComponent
-//             onClose={() => setShowForm(false)} 
+//           <FormComponent
+//             categoryId={selectedCategoryId}
+//             subcategoryId={selectedSubcategoryId}
+//             onClose={() => setShowForm(false)}
 //           />
 //         )}
 //       </main>
@@ -125,7 +141,7 @@
 // }
 
 import React, { useState, useEffect } from 'react';
-import { HiPlus, HiMinus } from 'react-icons/hi';
+import { HiPlus } from 'react-icons/hi';
 import FormComponent from './FormComponent';
 
 export default function AdminPanel() {
@@ -202,7 +218,7 @@ export default function AdminPanel() {
             onClick={handleAddButtonClick}
             style={{
               backgroundColor: 'green',
-              color: 'white',
+              color: 'yellow',
               padding: '10px 20px',
               borderRadius: '8px',
               display: 'flex',
@@ -213,21 +229,6 @@ export default function AdminPanel() {
             Add Product
             <HiPlus style={{ marginLeft: '8px', fontSize: '20px' }} />
           </button>
-          {/* <button
-            onClick={handleAddButtonClick}
-            style={{
-              backgroundColor: 'red',
-              color: 'white',
-              padding: '10px 20px',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              fontSize: '16px',
-            }}
-          >
-            Delete Product
-            <HiMinus style={{ marginLeft: '8px', fontSize: '20px' }} />
-          </button> */}
         </div>
       </header>
 
@@ -237,22 +238,38 @@ export default function AdminPanel() {
             {loading && <p className="text-center">Loading...</p>}
             {error && <p className="text-red-500 text-center">{error}</p>}
             {categories.length > 0 && (
-              <ul className="space-y-2">
+              <div style={{ display: 'inline-flex', gap: '20px', flexWrap: 'wrap' }}>
                 {categories.map((category) => (
-                  <li key={category._id} className="p-2 border-b border-gray-300">
+                  <div key={category._id} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', marginTop:"10px", borderRadius:"8px" }}>
                     <button
                       onClick={() => handleCategoryClick(category._id)}
-                      className="text-blue-500 hover:underline focus:outline-none"
+                      style={{
+                        backgroundColor: 'green',
+                        color: 'yellow',
+                        padding: '8px 16px',
+                        borderRadius: '4px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        marginBottom: '10px',
+                        fontWeight: selectedCategoryId === category._id ? 'bold' : 'normal',
+                      }}
                     >
                       {category.name}
                     </button>
                     {selectedCategoryId === category._id && subcategories.length > 0 && (
-                      <ul className="pl-4 mt-2 space-y-1">
+                      <ul style={{ listStyleType: 'none', padding: '0', margin: '0', textAlign: 'center' }}>
                         {subcategories.map((sub) => (
-                          <li key={sub._id}>
+                          <li key={sub._id} style={{ margin: '5px 0' }}>
                             <button
                               onClick={() => handleSubcategoryClick(sub._id)}
-                              className="text-gray-700 hover:underline focus:outline-none"
+                              style={{
+                                backgroundColor: 'lightgray',
+                                color: 'black',
+                                padding: '6px 12px',
+                                borderRadius: '4px',
+                                border: 'none',
+                                cursor: 'pointer',
+                              }}
                             >
                               {sub.name}
                             </button>
@@ -260,9 +277,9 @@ export default function AdminPanel() {
                         ))}
                       </ul>
                     )}
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             )}
           </div>
         )}
@@ -278,4 +295,3 @@ export default function AdminPanel() {
     </div>
   );
 }
-
