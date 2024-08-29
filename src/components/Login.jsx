@@ -1,6 +1,32 @@
-import React from 'react';
+
+
+import React, { useState } from 'react';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      setMessage(data.msg); // Display success message
+    } else {
+      setMessage(data.msg); // Display error message
+    }
+  };
+
   return (
     <div>
       <div style={{ maxWidth: '100vw', padding: '4rem 1rem', margin: '0 auto' }}>
@@ -15,7 +41,7 @@ export default function Login() {
           </p>
         </div>
 
-        <form action="#" style={{ maxWidth: '28rem', margin: '2rem auto 0', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <form onSubmit={handleSubmit} style={{ maxWidth: '28rem', margin: '2rem auto 0', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div>
             <label htmlFor="email" style={{ display: 'none' }}>Email</label>
 
@@ -31,6 +57,8 @@ export default function Login() {
                   boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)'
                 }}
                 placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <span style={{ position: 'absolute', top: 0, bottom: 0, right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
@@ -67,6 +95,8 @@ export default function Login() {
                   boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)'
                 }}
                 placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <span style={{ position: 'absolute', top: 0, bottom: 0, right: '0', display: 'grid', placeContent: 'center', paddingRight: '1rem' }}>
@@ -111,7 +141,14 @@ export default function Login() {
             </button>
           </div>
         </form>
+
+        {message && (
+          <div style={{ marginTop: '1rem', textAlign: 'center', color: message.includes('successful') ? 'green' : 'red' }}>
+            {message}
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
