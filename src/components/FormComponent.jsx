@@ -143,6 +143,7 @@ const FormComponent = ({ categoryId, subcategoryId, onClose }) => {
               <option value="Ethnic">Ethnic</option>
               <option value="Nightwear">Nightwear</option>
               <option value="SwimSuits">SwimSuit</option>
+              <option value="Woollen">Woollen</option>
             </select>
           </div>
 

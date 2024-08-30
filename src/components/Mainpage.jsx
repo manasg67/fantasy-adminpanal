@@ -9,9 +9,9 @@ export default function App() {
    
     <div className="min-h-screen bg-gray-100">
       <Header/>
-      <div style={{display:"flex",flexDirection:"row", alignItems:'center',justifyContent:"end",marginTop:50,gap:"200px"}}>
-      <Addproduct />
-      <CategoryDropdown/>
+      <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around",marginTop:50,gap:"200px"}}>
+        <div> <Addproduct /></div>
+        <div><CategoryDropdown/></div>
       </div>
      
       {/* Add other components like Sidebar, MainContent here */}

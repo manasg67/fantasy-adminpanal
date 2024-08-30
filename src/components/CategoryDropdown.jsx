@@ -136,49 +136,12 @@ export default function CategoryDropdown() {
         <HiMinus style={{ marginLeft: '8px', fontSize: '24px' }} />
       </button>
 
-      {/* Full Page Loader with Heartbeat Effect */}
-      {loading && (
-        <div
-          style={{
-            position: 'fixed',
-            width: '100%',
-            inset: '0',
-            backgroundColor: 'rgba(31, 41, 55, 0.8)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: '50',
-          }}
-        >
-          <img
-            src="/loadingbgremove.png"
-            alt="Loading"
-            style={{ width: '128px', height: '128px', animation: 'heartbeat 1.5s infinite' }}
-          />
-        </div>
-      )}
-
       {isOpen && (
-        <div
-          style={{
-            backgroundColor: 'white',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            borderRadius: '8px',
-            padding: '16px',
-            width: '80%',
-            maxWidth: '1200px',
-            margin: '0 auto',
-            zIndex: '40',
-            position: 'relative',
-          }}
-        >
+        <div>
           {/* Close Modal Button */}
           <button
             onClick={handleCloseModal}
             style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
               backgroundColor: '#dc2626',
               color: 'white',
               border: 'none',
@@ -204,13 +167,14 @@ export default function CategoryDropdown() {
                       <button
                         onClick={() => handleCategoryClick(category._id)}
                         style={{
-                          color: '#3b82f6',
-                          textDecoration: 'underline',
-                          cursor: 'pointer',
-                          outline: 'none',
-                          background: 'none',
+                          backgroundColor: 'green',
+                          color: 'yellow',
+                          padding: '8px 16px',
+                          borderRadius: '4px',
                           border: 'none',
-                          padding: '0',
+                          cursor: 'pointer',
+                          marginBottom: '10px',
+                          fontWeight: selectedCategoryId === category._id ? 'bold' : 'normal',
                         }}
                       >
                         {category.name}

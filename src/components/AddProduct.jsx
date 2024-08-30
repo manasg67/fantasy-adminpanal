@@ -123,8 +123,8 @@ export default function AdminPanel() {
                             <button
                               onClick={() => handleSubcategoryClick(sub._id)}
                               style={{
-                                backgroundColor: 'lightgray',
-                                color: 'black',
+                                backgroundColor: 'green',
+                                color: 'yellow',
                                 padding: '6px 12px',
                                 borderRadius: '4px',
                                 border: 'none',
