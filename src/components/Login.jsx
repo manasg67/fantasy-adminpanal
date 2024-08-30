@@ -215,16 +215,13 @@ export default function Login() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', position: 'relative', padding: '4rem 1rem' }}>
-      <div style={{ maxWidth: '32rem', margin: '0 auto', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-          Get started today!
-        </h1>
-        <p style={{ marginTop: '1rem', color: '#6B7280' }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla eaque error neque
-          ipsa culpa autem, at itaque nostrum!
-        </p>
-      </div>
+    <div>
+      <div style={{ maxWidth: '100vw', padding: '4rem 1rem', margin: '0 auto' }}>
+        <div style={{ maxWidth: '32rem', margin: '0 auto', textAlign: 'center' }}>
+          <h1 style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+            Get started today!
+          </h1>
+        </div>
 
       <form onSubmit={handleSubmit} style={{ maxWidth: '28rem', margin: '2rem auto 0', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <div>
