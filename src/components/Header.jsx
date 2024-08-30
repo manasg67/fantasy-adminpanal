@@ -5,13 +5,23 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        // Clear authentication data (e.g., token)
-        localStorage.removeItem('authToken'); // or sessionStorage.removeItem('authToken');
+    // const handleLogout = () => {
+    //     // Clear authentication data (e.g., token)
+    //     localStorage.removeItem('authToken'); // or sessionStorage.removeItem('authToken');
         
-        // Redirect to the login page
-        navigate('/');
-      };
+    //     // Redirect to the login page
+    //     navigate('/');
+    //   };
+    const handleLogout = () => {
+      // Clear authentication data
+      localStorage.removeItem('authToken'); // or sessionStorage.removeItem('authToken');
+      
+      // Redirect to the login page and replace the history stack
+      navigate('/', { replace: true });
+
+      // Optionally, clear any other state if necessary
+      window.location.reload(); // Force a reload to clear any cached state
+  };
   return (
     <div>
       <header style={{  backgroundColor: 'white',
