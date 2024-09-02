@@ -19,9 +19,24 @@ const AddBanner = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate form inputs
+    if (!formData.category) {
+      alert('Please select a category.');
+      return;
+    }
+    if (!formData.image) {
+      alert('Please upload an image.');
+      return;
+    }
+
     const formDataToSend = new FormData();
-    formDataToSend.append('image', formData.image);
-    formDataToSend.append('category', formData.category);
+
+    // Conditionally append either banner1 or banner2
+    if (formData.category === 'Festive') {
+      formDataToSend.append('banner1', formData.image);
+    } else if (formData.category === 'Woollen') {
+      formDataToSend.append('banner2', formData.image);
+    }
 
     try {
       const response = await fetch('https://fantasy-collection-backend.onrender.com/api/uploadbanner', {
@@ -30,25 +45,20 @@ const AddBanner = ({ onClose }) => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit the banner');
+        console.error(`Error submitting the banner: ${response.statusText}`);
+        alert('Failed to submit the banner. Please try again.');
+      } else {
+        alert('Banner uploaded successfully!');
+        onClose(); // Close the modal after successful upload
       }
-
-      const result = await response.json();
-      console.log('Banner submitted successfully:', result);
-
-      setFormData({
-        image: null,
-        category: '',
-      });
-
-      window.location.reload();
     } catch (error) {
-      console.error('Error submitting the banner:', error.message);
+      console.error('Error submitting the banner:', error);
+      alert('An error occurred while submitting the banner. Please try again.');
     }
   };
 
   return (
-    <div style={{ position: 'fixed', inset: '0', overflowY: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh',marginTop:"10px" }}>
+    <div style={{ position: 'fixed', inset: '0', overflowY: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', marginTop: '10px' }}>
       <div style={{ backgroundColor: '#94a3b8', padding: '2rem', borderRadius: '0.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', position: 'relative' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'white' }}>Add Banner</h2>
